@@ -52,7 +52,7 @@ router.get("/meta", async (req, res) => {
          c.credit,
          c.category,
          c.sem,
-         COALESCE(d.name, c.department_code) AS department_name
+         COALESCE(d.name, 'Department') AS department_name
        FROM courses c
        LEFT JOIN departments d ON c.department_id = d.id
        ORDER BY c.code ASC;`
@@ -114,7 +114,7 @@ router.get("/", async (req, res) => {
 
     if (department && department !== "All") {
       params.push(department);
-      query += ` AND (LOWER(t.department) = LOWER($${params.length}) OR LOWER(c.department_code) = LOWER($${params.length}))`;
+      query += ` AND LOWER(t.department) = LOWER($${params.length})`;
     }
 
     if (semester && semester !== "All") {
