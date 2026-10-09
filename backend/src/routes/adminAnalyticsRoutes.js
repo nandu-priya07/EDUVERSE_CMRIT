@@ -530,7 +530,7 @@ router.get("/enrollments", async (req, res) => {
       LEFT JOIN departments d ON (u.department = d.id::text OR UPPER(u.department) = UPPER(d.code) OR UPPER(u.department) = UPPER(d.name))
       LEFT JOIN course_enrollments ce ON u.uid = ce.student_uid
       WHERE u.role = 'student' AND u.is_active = true
-      GROUP BY department
+      GROUP BY COALESCE(d.name, u.department)
       ORDER BY total_students DESC
     `);
 
