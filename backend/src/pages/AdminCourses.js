@@ -293,10 +293,10 @@ router.post("/bulk-import", async (req, res) => {
         depts.push({ id: deptId, code: "GEN", name: "General" });
       }
 
-      // Check if course exists by code
+      // Check if course exists by code for THIS department, year and semester
       const existing = await pool.query(
-        "SELECT id FROM courses WHERE UPPER(code) = UPPER($1)",
-        [code]
+        "SELECT id FROM courses WHERE UPPER(code) = UPPER($1) AND department_id = $2 AND sem = $3 AND year = $4",
+        [code, deptId, sem, year]
       );
 
       if (existing.rows.length > 0) {
