@@ -47,7 +47,8 @@ router.get("/meta", async (req, res) => {
       `SELECT 
          c.id,
          c.code,
-         c.title,
+         c.name AS title,
+         c.name,
          c.credit,
          c.category,
          c.sem,
@@ -98,7 +99,7 @@ router.get("/", async (req, res) => {
         t.created_at,
         t.updated_at,
         c.code AS course_code,
-        c.title AS course_title,
+        c.name AS course_title,
         c.credit AS course_credit,
         u.name AS teacher_name,
         u.email AS teacher_email,

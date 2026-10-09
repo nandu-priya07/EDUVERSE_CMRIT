@@ -1,53 +1,5 @@
 /* AdminTimetable.css - SmartCampus Admin Timetable Assignment */
 
-.at-layout {
-  display: flex;
-  min-height: 100vh;
-  background-color: #0b0813;
-  color: #f8fafc;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
-
-.at-main {
-  flex: 1;
-  min-width: 0;
-  padding: 28px 36px;
-  background: #0d0a18;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.at-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.at-title-section h1 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 6px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.at-title-section p {
-  color: #94a3b8;
-  font-size: 13px;
-  margin: 0;
-}
-
-.at-actions {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
 .at-btn-primary {
   background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
   color: #ffffff;
@@ -99,6 +51,7 @@
   gap: 18px;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .at-filter-group {
@@ -386,7 +339,7 @@
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(6px);
   display: grid;
-  placeItems: center;
+  place-items: center;
   z-index: 9999;
   padding: 20px;
 }

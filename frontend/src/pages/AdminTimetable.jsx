@@ -11,7 +11,8 @@ import {
   X,
   CheckCircle2,
   User,
-  MapPin
+  MapPin,
+  ChevronRight
 } from "lucide-react";
 import AdminSidebar from "../components/AdminSidebar";
 import "./AdminTimetable.css";
@@ -237,12 +238,12 @@ export default function AdminTimetable() {
   };
 
   return (
-    <div className="at-layout">
+    <div className="admin-layout">
       {/* Admin Sidebar */}
       <AdminSidebar activeItem="Timetable" />
 
       {/* Main Content Area */}
-      <main className="at-main">
+      <main className="admin-main">
         {/* Toast Alert */}
         {toastMessage && (
           <div
@@ -267,17 +268,20 @@ export default function AdminTimetable() {
           </div>
         )}
 
-        {/* Page Header */}
-        <header className="at-header">
-          <div className="at-title-section">
-            <h1>
-              <Clock size={26} style={{ color: "#c084fc" }} />
-              Admin Staff Timetable Assignment
-            </h1>
-            <p>Assign weekly timing, classrooms, and subject periods for faculty members across sections.</p>
+        {/* Top Header */}
+        <header className="admin-topbar">
+          <div className="admin-topbar-left">
+            <div>
+              <div className="admin-breadcrumb">
+                Administration <ChevronRight size={13} /> Timetable
+              </div>
+              <h1 style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <Clock size={22} style={{ color: "#c084fc" }} /> Admin Staff Timetable Assignment
+              </h1>
+            </div>
           </div>
 
-          <div className="at-actions">
+          <div className="admin-topbar-right">
             <button className="at-btn-secondary" onClick={fetchTimetable} title="Refresh Timetable Data">
               <RefreshCw size={16} /> Refresh
             </button>
@@ -286,6 +290,8 @@ export default function AdminTimetable() {
             </button>
           </div>
         </header>
+
+        <div className="admin-content">
 
         {/* Filters Bar */}
         <section className="at-filter-card">
@@ -758,6 +764,7 @@ export default function AdminTimetable() {
             </div>
           </div>
         )}
+        </div>
       </main>
     </div>
   );
