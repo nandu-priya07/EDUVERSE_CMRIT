@@ -1,0 +1,41 @@
+# Environment secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Python cache & environments
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Stable Diffusion / Hugging Face model downloads & weights
+comic_generator/models/
+**/models--*/
+**/*.safetensors
+**/*.bin
+**/*.onnx
+**/*.incomplete
+**/*.lock
+**/.locks/
+
+# Generated comics and temporary files
+comic_generator/generated/
+comic_generator/test_sdxl.png
+*.png
+*.jpg
+*.jpeg
+*.pdf
+
+# Dependencies & build outputs
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+frontend/dist/
+backend/dist/
+scratch/

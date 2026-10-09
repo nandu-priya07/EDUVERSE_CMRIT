@@ -1,0 +1,33 @@
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Storage & DB
+chroma_db/
+backend/chroma_db/
+data/
+backend/data/
+*.sqlite3
+
+# Environment secrets
+.env
+backend/.env
+frontend/.env
+*.local
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.DS_Store
+Thumbs.db

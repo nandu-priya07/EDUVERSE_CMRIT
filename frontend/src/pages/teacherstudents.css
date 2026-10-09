@@ -1,0 +1,149 @@
+
+.ts-layout {
+  --purple: #7957f6;
+  display: flex;
+  min-height: 100vh;
+  background: #f7f7fb;
+  color: #202132;
+  font-family: 'DM Sans', 'Inter', sans-serif;
+}
+.ts-layout * { box-sizing: border-box; }
+.ts-layout a { color: inherit; text-decoration: none; }
+
+.ts-sidebar { width: 250px; flex-shrink: 0; background: #171722; color: #a8a8b7; padding: 25px 16px; display: flex; flex-direction: column; min-height: 100vh; }
+.ts-brand { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 20px; font-weight: 800; padding: 0 7px 28px; border-bottom: 1px solid #343442; }
+.ts-brand span { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 12px; background: var(--purple); color: white; font-size: 23px; }
+.ts-user { display: flex; align-items: center; gap: 10px; padding: 22px 6px; border-bottom: 1px solid #343442; margin-bottom: 22px; }
+.ts-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg,#a78bfa,#6d4df2); display: grid; place-items: center; color: white; font-weight: 700; }
+.ts-user h4 { color: white; margin: 0 0 4px; font-size: 13px; }
+.ts-user p { margin: 0; font-size: 11px; color: #8e8e9d; }
+.ts-arrow { margin-left: auto; color: #a58aff; font-size: 22px; }
+.ts-label { font-size: 10px; letter-spacing: 1.4px; color: #686879; padding: 0 10px 12px; font-weight: 700; }
+.ts-nav { display: grid; gap: 6px; }
+.ts-nav a { display: flex; align-items: center; gap: 13px; padding: 12px 13px; border-radius: 10px; font-size: 13px; transition: .2s; }
+.ts-nav a span { font-size: 17px; width: 18px; text-align: center; }
+.ts-nav a:hover { background: #292837; color: white; }
+.ts-nav a.active { background: var(--purple); color: white; }
+.ts-pref { margin-top: 30px; padding-top: 20px; border-top: 1px solid #343442; }
+.ts-help { display: flex; gap: 10px; align-items: center; margin-top: auto; padding: 15px 10px; border: 1px solid #343442; border-radius: 12px; }
+.ts-help > span { width: 28px; height: 28px; border-radius: 9px; background: #30274a; color: #b5a2ff; display: grid; place-items: center; }
+.ts-help strong { color: #ddd; font-size: 11px; }
+.ts-help p { font-size: 10px; margin: 4px 0 0; color: #88889a; }
+
+.ts-main { flex: 1; min-width: 0; padding: 28px 34px; max-width: 1700px; margin: 0 auto; }
+.ts-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.ts-header > div:first-child p { color: #a0a0ad; font-size: 11px; margin: 0 0 6px; }
+.ts-header h2 { font-size: 20px; margin: 0; }
+.ts-header-right { display: flex; align-items: center; gap: 12px; }
+.ts-icon-btn { width: 39px; height: 39px; border: 1px solid #eeeef3; border-radius: 50%; background: white; color: #555568; font-size: 20px; cursor: pointer; }
+.ts-profile { display: flex; align-items: center; gap: 9px; padding: 5px 12px 5px 6px; border: 1px solid #eeeef3; border-radius: 30px; background: white; font-size: 12px; font-weight: 600; }
+.ts-avatar.small { width: 29px; height: 29px; font-size: 12px; }
+
+.ts-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 23px; }
+.ts-title-row h1 { font-size: 25px; margin: 0 0 7px; letter-spacing: -.8px; }
+.ts-title-row h1 span { color: #a78bfa; }
+.ts-title-row p { color: #9292a1; font-size: 12px; margin: 0; }
+.ts-export { border: 1px solid #e6e1ff; background: white; color: #7152e5; padding: 11px 15px; border-radius: 9px; font-size: 11px; font-weight: 600; cursor: pointer; }
+
+.ts-stats { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; }
+.ts-stat { background: white; border: 1px solid #ececf2; border-radius: 13px; padding: 17px; }
+.ts-stat-icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; font-size: 16px; }
+.ts-stat-icon.purple { background: #f0ebff; color: #7957f6; }
+.ts-stat-icon.green { background: #e7f8f0; color: #31a979; }
+.ts-stat-icon.blue { background: #eaf2ff; color: #4985ee; }
+.ts-stat-icon.orange { background: #fff3e4; color: #e79a35; }
+.ts-stat p { color: #858594; font-size: 11px; margin: 12px 0 4px; }
+.ts-stat h2 { font-size: 25px; margin: 0 0 5px; letter-spacing: -.7px; }
+.ts-stat > span { font-size: 9px; color: #aaaaba; }
+.ts-stat .ts-green { color: #28a879; }
+.ts-stat .ts-orange { color: #d99132; }
+
+.ts-table-card { background: white; border: 1px solid #ececf2; border-radius: 14px; padding: 20px; margin-top: 20px; }
+.ts-table-heading { display: flex; justify-content: space-between; align-items: center; }
+.ts-table-heading h3 { margin: 0 0 5px; font-size: 16px; }
+.ts-table-heading p { color: #9999a7; font-size: 11px; margin: 0; }
+.ts-count { background: #eeeaff; color: #7657e9; padding: 6px 10px; border-radius: 20px; font-size: 10px; font-weight: 600; }
+.ts-toolbar { display: flex; justify-content: space-between; gap: 12px; margin: 20px 0; }
+.ts-search { display: flex; align-items: center; gap: 9px; background: white; border: 1px solid #ececf2; border-radius: 9px; padding: 0 12px; flex: 1; max-width: 420px; }
+.ts-search > span { font-size: 21px; color: #9999a7; }
+.ts-search input { border: 0; outline: 0; background: transparent; width: 100%; padding: 11px 0; font: inherit; font-size: 11px; color: #202132; }
+.ts-search button { border: 0; background: transparent; color: #999; font-size: 18px; cursor: pointer; }
+.ts-filters { display: flex; gap: 8px; }
+.ts-filters select { background: white; border: 1px solid #ececf2; border-radius: 9px; padding: 0 10px; font-size: 10px; color: #686879; outline: none; }
+
+.ts-table-wrap { overflow-x: auto; }
+.ts-table { border-collapse: collapse; width: 100%; min-width: 850px; text-align: left; }
+.ts-table th { color: #a0a0ad; font-size: 9px; font-weight: 600; letter-spacing: .4px; padding: 13px 10px; background: #fafafd; white-space: nowrap; }
+.ts-table td { padding: 13px 10px; border-bottom: 1px solid #f2f2f6; color: #858594; font-size: 10px; white-space: nowrap; }
+.ts-student-cell { display: flex; align-items: center; gap: 9px; }
+.ts-student-avatar { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
+.ts-student-avatar.purple, .ts-modal-avatar.purple { background: #efeaff; color: #7554e9; }
+.ts-student-avatar.pink, .ts-modal-avatar.pink { background: #ffedf3; color: #d65c91; }
+.ts-student-avatar.blue, .ts-modal-avatar.blue { background: #e7f4ff; color: #4985bb; }
+.ts-student-avatar.orange, .ts-modal-avatar.orange { background: #fff0df; color: #c77c2e; }
+.ts-student-avatar.green, .ts-modal-avatar.green { background: #e7f8f0; color: #269d73; }
+.ts-student-cell > div:last-child { display: grid; gap: 4px; }
+.ts-student-cell strong { font-size: 11px; color: #333344; }
+.ts-student-cell span { font-size: 9px; color: #a0a0ad; }
+.ts-metric { display: flex; align-items: center; gap: 8px; }
+.ts-metric strong { color: #454556; font-size: 10px; }
+.ts-progress { width: 55px; height: 5px; background: #efeff7; border-radius: 10px; overflow: hidden; }
+.ts-progress i { display: block; height: 100%; background: #7957f6; border-radius: inherit; }
+.ts-progress i.low { background: #e7a144; }
+.ts-score-good { color: #28a879; }
+.ts-score-low { color: #dc9540; }
+.ts-status { padding: 5px 8px; border-radius: 20px; font-size: 9px; }
+.ts-status.active { color: #269d73; background: #e8f8f0; }
+.ts-status.risk { color: #c78a2d; background: #fff4df; }
+.ts-view-btn { border: 1px solid #e7e2ff; background: #f6f3ff; color: #7152e5; border-radius: 6px; padding: 6px 9px; font-size: 10px; cursor: pointer; }
+
+.ts-empty { text-align: center; padding: 45px 15px; }
+.ts-empty h3 { font-size: 15px; }
+.ts-empty p { color: #999; font-size: 11px; }
+.ts-empty button { background: #7957f6; border: 0; color: white; padding: 8px 12px; border-radius: 7px; cursor: pointer; }
+
+.ts-footer { display: flex; justify-content: space-between; color: #aaaaba; font-size: 10px; padding: 24px 2px 5px; }
+.ts-footer span { color: #8d7ad6; }
+
+.ts-modal-backdrop { position: fixed; inset: 0; z-index: 20; background: #17172280; display: grid; place-items: center; padding: 15px; }
+.ts-modal { position: relative; width: min(420px,100%); background: white; border-radius: 18px; padding: 28px; box-shadow: 0 20px 70px #0002; text-align: center; }
+.ts-modal-close { position: absolute; top: 12px; right: 15px; border: 0; background: transparent; font-size: 25px; color: #888; cursor: pointer; }
+.ts-modal-avatar { width: 65px; height: 65px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 20px; margin: 0 auto 12px; }
+.ts-modal h2 { margin: 0 0 5px; font-size: 19px; }
+.ts-modal-reg { color: #999; font-size: 11px; margin: 0 0 20px; }
+.ts-modal-info { text-align: left; border-top: 1px solid #eeeef3; }
+.ts-modal-info div { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-bottom: 1px solid #f1f1f5; font-size: 11px; }
+.ts-modal-info span { color: #9999a7; }
+.ts-modal-info strong { text-align: right; overflow-wrap: anywhere; }
+.ts-modal-done { width: 100%; border: 0; background: #7957f6; color: white; border-radius: 9px; padding: 11px; margin-top: 18px; cursor: pointer; }
+
+@media (max-width: 1250px) {
+  .ts-sidebar { width: 215px; }
+  .ts-main { padding: 24px 20px; }
+  .ts-stats { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 800px) {
+  .ts-sidebar { width: 68px; padding: 20px 9px; }
+  .ts-brand { justify-content: center; padding: 0 0 22px; }
+  .ts-brand { font-size: 0; }
+  .ts-user > div:not(.ts-avatar), .ts-arrow, .ts-label, .ts-nav a:not(.active), .ts-help { display: none; }
+  .ts-user { justify-content: center; padding: 18px 0; }
+  .ts-nav a { justify-content: center; padding: 13px 0; font-size: 0; }
+  .ts-nav a span { font-size: 19px; }
+  .ts-pref { display: none; }
+}
+@media (max-width: 650px) {
+  .ts-main { padding: 18px 12px; }
+  .ts-header { align-items: flex-start; }
+  .ts-profile { display: none; }
+  .ts-title-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .ts-title-row h1 { font-size: 21px; }
+  .ts-stats { gap: 9px; }
+  .ts-stat { padding: 12px; }
+  .ts-stat h2 { font-size: 21px; }
+  .ts-toolbar { flex-direction: column; }
+  .ts-search { max-width: none; }
+  .ts-filters { flex-wrap: wrap; }
+  .ts-filters select { flex: 1; padding: 10px 6px; }
+  .ts-footer { flex-direction: column; gap: 8px; }
+}

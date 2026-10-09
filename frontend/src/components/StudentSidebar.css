@@ -1,0 +1,254 @@
+.common-student-sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: #141120;
+  border-right: 1px solid #282138;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  color: #c5bece;
+  font-family: "Inter", sans-serif;
+  z-index: 90;
+  transition: all 0.3s ease;
+}
+
+.student-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 85;
+}
+
+/* Brand Header */
+.student-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 8px 24px 8px;
+  border-bottom: 1px solid #261f36;
+  position: relative;
+}
+
+.student-brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  color: white;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.35);
+}
+
+.student-brand-text h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #f3f0ff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.student-brand-text span {
+  font-size: 11px;
+  color: #a78bfa;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.student-mobile-close {
+  display: none;
+  background: transparent;
+  border: 0;
+  color: #94a3b8;
+  cursor: pointer;
+  position: absolute;
+  right: 4px;
+}
+
+/* Mini Profile Badge */
+.student-profile-mini {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(36, 29, 56, 0.6);
+  border: 1px solid #2f2647;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 18px 0;
+}
+
+.student-avatar-mini {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.student-profile-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.student-profile-info strong {
+  font-size: 13px;
+  color: #f1f5f9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.student-profile-info span {
+  font-size: 11px;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Nav Headers & Buttons */
+.student-nav-label {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  color: #64748b;
+  padding: 12px 10px 6px 10px;
+}
+
+.student-preferences {
+  margin-top: 14px;
+}
+
+.student-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.student-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: #94a3b8;
+  padding: 11px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.student-nav-item:hover {
+  color: #f1f5f9;
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.student-nav-item.active {
+  color: #a78bfa;
+  background: rgba(139, 92, 246, 0.15);
+  font-weight: 600;
+  border-left: 3px solid #8b5cf6;
+}
+
+.nav-badge {
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+  padding: 2px 7px;
+  border-radius: 10px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.active-arrow {
+  margin-left: auto;
+  color: #a78bfa;
+}
+
+/* Sidebar Footer & Logout */
+.student-sidebar-footer {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid #261f36;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.student-help-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1a152b;
+  border: 1px solid #2e2447;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.help-icon {
+  color: #8b5cf6;
+}
+
+.student-help-box strong {
+  display: block;
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.student-help-box small {
+  display: block;
+  font-size: 10px;
+  color: #64748b;
+}
+
+.student-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.student-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+}
+
+@media (max-width: 900px) {
+  .common-student-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -280px;
+  }
+  .common-student-sidebar.open {
+    left: 0;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  }
+  .student-overlay {
+    display: block;
+  }
+  .student-mobile-close {
+    display: block;
+  }
+}

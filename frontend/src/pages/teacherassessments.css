@@ -1,0 +1,541 @@
+
+.ta-page {
+  display: flex;
+  min-height: 100vh;
+  background: #0b0b12;
+  color: #f4f2fa;
+  font-family: Inter, sans-serif;
+}
+
+.ta-sidebar {
+  width: 245px;
+  flex-shrink: 0;
+  background: #111019;
+  border-right: 1px solid #292638;
+  padding: 25px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ta-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 8px 32px;
+}
+
+.ta-logo {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: #8b5cf6;
+  font-weight: 800;
+}
+
+.ta-brand h2 {
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+
+.ta-brand span {
+  color: #8c879d;
+  font-size: 10px;
+}
+
+.ta-nav-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #706b80;
+  padding: 0 12px 12px;
+}
+
+.ta-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ta-nav button,
+.ta-sidebar-bottom button {
+  border: 0;
+  background: transparent;
+  color: #9691a5;
+  padding: 13px 12px;
+  text-align: left;
+  border-radius: 9px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.ta-nav button span {
+  display: inline-block;
+  width: 27px;
+  font-size: 16px;
+}
+
+.ta-nav button:hover,
+.ta-sidebar-bottom button:hover {
+  background: #1c1928;
+  color: white;
+}
+
+.ta-nav button.active {
+  background: #292044;
+  color: #c4b5fd;
+}
+
+.ta-sidebar-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #292638;
+  padding-top: 15px;
+}
+
+.ta-main {
+  min-width: 0;
+  flex: 1;
+  padding: 34px;
+}
+
+.ta-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.ta-breadcrumb {
+  color: #8e879f;
+  font-size: 11px;
+}
+
+.ta-topbar h1 {
+  font-size: 28px;
+  margin: 10px 0 7px;
+}
+
+.ta-topbar p {
+  color: #8e899e;
+  font-size: 12px;
+  margin: 0;
+}
+
+.ta-create {
+  background: #8b5cf6;
+  border: 1px solid #8b5cf6;
+  color: white;
+  border-radius: 9px;
+  padding: 12px 17px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ta-create:hover {
+  background: #7c3aed;
+}
+
+.ta-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.ta-stat {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: #14131d;
+  border: 1px solid #292638;
+  padding: 20px 16px;
+  border-radius: 13px;
+  min-width: 0;
+}
+
+.ta-stat-icon {
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  font-size: 17px;
+}
+
+.ta-stat-icon.purple {
+  background: #292044;
+  color: #bda8ff;
+}
+
+.ta-stat-icon.green {
+  background: #173329;
+  color: #65d6a0;
+}
+
+.ta-stat-icon.blue {
+  background: #172d42;
+  color: #70baff;
+}
+
+.ta-stat-icon.orange {
+  background: #3a2a1b;
+  color: #f7b76a;
+}
+
+.ta-stat span {
+  color: #9691a5;
+  font-size: 10px;
+}
+
+.ta-stat h2 {
+  font-size: 23px;
+  margin: 5px 0;
+}
+
+.ta-stat small {
+  color: #6e697d;
+  font-size: 10px;
+}
+
+.ta-content {
+  background: #14131d;
+  border: 1px solid #292638;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.ta-content-header {
+  padding: 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.ta-content-header h2 {
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.ta-content-header p {
+  color: #858195;
+  font-size: 11px;
+  margin: 0;
+}
+
+.ta-filters {
+  display: flex;
+  gap: 10px;
+}
+
+.ta-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #302d40;
+  background: #0e0d16;
+  padding: 0 11px;
+  border-radius: 8px;
+}
+
+.ta-search span {
+  color: #9d96b1;
+  font-size: 19px;
+}
+
+.ta-search input {
+  width: 165px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: white;
+  padding: 11px 0;
+  font-size: 11px;
+}
+
+.ta-filters select {
+  background: #0e0d16;
+  color: #c9c4d5;
+  border: 1px solid #302d40;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 11px;
+}
+
+.ta-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ta-table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.ta-table th {
+  background: #191823;
+  color: #777286;
+  font-size: 9px;
+  letter-spacing: 0.7px;
+  padding: 15px 17px;
+  font-weight: 600;
+}
+
+.ta-table td {
+  padding: 17px;
+  border-bottom: 1px solid #292638;
+  color: #aaa5b8;
+  font-size: 11px;
+}
+
+.ta-table tbody tr:hover {
+  background: #191723;
+}
+
+.ta-assessment-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ta-file-icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #292044;
+  color: #bda8ff;
+}
+
+.ta-assessment-name strong {
+  display: block;
+  color: #e6e2ef;
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+.ta-assessment-name span {
+  color: #777286;
+  font-size: 10px;
+}
+
+.ta-submission strong {
+  display: block;
+  font-size: 10px;
+  margin-bottom: 7px;
+}
+
+.ta-progress {
+  width: 75px;
+  height: 4px;
+  background: #302d40;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.ta-progress span {
+  display: block;
+  height: 100%;
+  background: #9b78f5;
+}
+
+.ta-status {
+  padding: 6px 9px;
+  border-radius: 20px;
+  font-size: 9px;
+}
+
+.ta-status.published {
+  background: #173329;
+  color: #65d6a0;
+}
+
+.ta-status.draft {
+  background: #3a2a1b;
+  color: #f7b76a;
+}
+
+.ta-status.completed {
+  background: #172d42;
+  color: #70baff;
+}
+
+.ta-view {
+  background: #292044;
+  border: 1px solid #49376f;
+  color: #c4b5fd;
+  border-radius: 7px;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.ta-empty {
+  text-align: center;
+  padding: 35px !important;
+  color: #858195 !important;
+}
+
+.ta-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000a;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.ta-modal {
+  width: min(100%, 480px);
+  background: #171520;
+  border: 1px solid #393349;
+  border-radius: 16px;
+  padding: 25px;
+}
+
+.ta-modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.ta-modal-header span {
+  color: #a78bfa;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.ta-modal-header h2 {
+  font-size: 19px;
+  margin: 10px 0 20px;
+}
+
+.ta-modal-header button {
+  background: transparent;
+  border: 0;
+  color: #aaa5b8;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.ta-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px 0;
+  border-top: 1px solid #302d40;
+  border-bottom: 1px solid #302d40;
+}
+
+.ta-modal-grid span {
+  display: block;
+  color: #858195;
+  font-size: 10px;
+  margin-bottom: 7px;
+}
+
+.ta-modal-grid strong {
+  font-size: 12px;
+}
+
+.ta-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+.ta-modal-actions button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.ta-delete {
+  background: #3a1e28;
+  color: #fb7185;
+  border: 1px solid #633040;
+}
+
+.ta-close {
+  background: #292638;
+  color: #ccc7d8;
+  border: 1px solid #393549;
+}
+
+@media (max-width: 1100px) {
+  .ta-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .ta-sidebar {
+    display: none;
+  }
+
+  .ta-main {
+    padding: 20px;
+  }
+
+  .ta-content-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ta-filters {
+    width: 100%;
+  }
+
+  .ta-search {
+    flex: 1;
+  }
+
+  .ta-search input {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .ta-topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ta-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ta-stat {
+    padding: 13px 10px;
+    gap: 8px;
+  }
+
+  .ta-stat-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ta-stat h2 {
+    font-size: 19px;
+  }
+
+  .ta-filters {
+    flex-direction: column;
+  }
+
+  .ta-filters select {
+    padding: 12px;
+  }
+}

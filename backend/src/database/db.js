@@ -735,6 +735,37 @@ export async function initDatabase() {
       );
     `;
 
+    const createAIRequestLogsTableQuery = `
+      CREATE TABLE IF NOT EXISTS ai_request_logs (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        feature_name VARCHAR(100) NOT NULL,
+        user_uid VARCHAR(255) REFERENCES users(uid) ON DELETE SET NULL,
+        user_role VARCHAR(50),
+        department VARCHAR(255),
+        course_code VARCHAR(50),
+        prompt_summary TEXT,
+        model_name VARCHAR(100) DEFAULT 'gemini-3.5-flash',
+        is_local_model BOOLEAN DEFAULT FALSE,
+        status VARCHAR(20) DEFAULT 'success' CHECK (status IN ('success', 'failed')),
+        error_message TEXT,
+        latency_ms INTEGER DEFAULT 0,
+        created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+
+    const createLMSActivityLogsTableQuery = `
+      CREATE TABLE IF NOT EXISTS lms_activity_logs (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        activity_type VARCHAR(100) NOT NULL,
+        user_uid VARCHAR(255) REFERENCES users(uid) ON DELETE SET NULL,
+        user_role VARCHAR(50),
+        department VARCHAR(255),
+        course_id UUID,
+        details JSONB,
+        created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+
     await client.query(createQuizzesTableQuery);
     await client.query(createQuizQuestionsTableQuery);
     await client.query(createQuizAttemptsTableQuery);
@@ -745,11 +776,16 @@ export async function initDatabase() {
     await client.query(createStudentResultsTableQuery);
     await client.query(createResultPublicationsTableQuery);
     await client.query(createResultAuditLogsTableQuery);
+    await client.query(createAIRequestLogsTableQuery);
+    await client.query(createLMSActivityLogsTableQuery);
 
     try {
       await client.query(`CREATE INDEX IF NOT EXISTS idx_student_results_student ON student_results(student_uid);`);
       await client.query(`CREATE INDEX IF NOT EXISTS idx_student_results_dept_sem ON student_results(department, semester, academic_year, batch_year);`);
       await client.query(`CREATE INDEX IF NOT EXISTS idx_result_publications_lookup ON result_publications(department, batch_year, academic_year, semester, section);`);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_ai_request_logs_feature ON ai_request_logs(feature_name);`);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_ai_request_logs_created ON ai_request_logs(created_at);`);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_lms_activity_user ON lms_activity_logs(user_uid, activity_type);`);
     } catch (e) {}
 
     try { await client.query(createIndexesQuery); } catch (e) {}

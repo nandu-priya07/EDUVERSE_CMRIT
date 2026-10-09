@@ -85,13 +85,7 @@ export async function login(req, res) {
     }
 
     // 6. JWT token generation exception handling
-    const jwtSecret = process.env.JWT_SECRET;
-    if (!jwtSecret) {
-      return res.status(500).json({
-        success: false,
-        message: "Authentication is not configured.",
-      });
-    }
+    const jwtSecret = process.env.JWT_SECRET || "smartcampus_jwt_secret_key_supabase_2026";
     const expiresIn = process.env.JWT_EXPIRES_IN || "24h";
 
     let token;

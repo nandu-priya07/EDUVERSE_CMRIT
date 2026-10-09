@@ -1,0 +1,520 @@
+.teacher-ai-page {
+  --ai-bg: #0c0b13;
+  --ai-panel: #151320;
+  --ai-border: #292638;
+  --ai-muted: #9692a8;
+  --ai-text: #f4f1ff;
+  --ai-purple: #9b72ff;
+  display: flex;
+  min-height: 100vh;
+  background: var(--ai-bg);
+  color: var(--ai-text);
+  font-family: Inter, "Segoe UI", sans-serif;
+}
+
+.teacher-ai-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background: #11101a;
+  border-right: 1px solid var(--ai-border);
+  padding: 25px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.teacher-ai-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 8px 35px;
+}
+
+.teacher-ai-logo {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #a77aff, #6c42db);
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.teacher-ai-brand h2 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.teacher-ai-brand span {
+  font-size: 11px;
+  color: var(--ai-muted);
+}
+
+.teacher-ai-nav-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #777287;
+  padding: 0 12px 13px;
+}
+
+.teacher-ai-nav {
+  display: grid;
+  gap: 6px;
+}
+
+.teacher-ai-nav button,
+.teacher-ai-sidebar-bottom button {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #a8a4b8;
+  text-align: left;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.teacher-ai-nav button span {
+  width: 20px;
+  font-size: 17px;
+  text-align: center;
+}
+
+.teacher-ai-nav button:hover,
+.teacher-ai-sidebar-bottom button:hover {
+  background: #201d2d;
+  color: white;
+}
+
+.teacher-ai-nav button.active {
+  background: #29203f;
+  color: #c4a8ff;
+  box-shadow: inset 3px 0 #a77aff;
+}
+
+.teacher-ai-sidebar-bottom {
+  margin-top: auto;
+  padding-top: 30px;
+  border-top: 1px solid var(--ai-border);
+  display: grid;
+  gap: 5px;
+}
+
+.teacher-ai-main {
+  flex: 1;
+  min-width: 0;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 32px 42px;
+}
+
+.teacher-ai-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.teacher-ai-eyebrow {
+  color: #aa8aff;
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.teacher-ai-header h1 {
+  font-size: 27px;
+  margin: 8px 0 5px;
+}
+
+.teacher-ai-header p,
+.teacher-ai-section-heading p,
+.teacher-ai-workspace-heading p {
+  color: var(--ai-muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+.teacher-ai-avatar {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: #302347;
+  color: #d3bdff;
+  border: 1px solid #654a91;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.teacher-ai-hero {
+  min-height: 215px;
+  border: 1px solid #463365;
+  border-radius: 17px;
+  padding: 30px 35px;
+  background:
+    radial-gradient(circle at 85% 50%, #55368c66, transparent 30%),
+    linear-gradient(115deg, #211832, #171321 70%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.teacher-ai-hero-tag {
+  font-size: 10px;
+  color: #c2a7ff;
+  letter-spacing: 1.4px;
+  font-weight: 700;
+}
+
+.teacher-ai-hero h2 {
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 14px 0 10px;
+}
+
+.teacher-ai-hero p {
+  color: #b8b1c8;
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.teacher-ai-hero-art {
+  font-size: 125px;
+  color: #b99aff;
+  text-shadow: 0 0 60px #9d69ff88;
+  padding: 0 35px;
+}
+
+.teacher-ai-tools {
+  margin-top: 35px;
+}
+
+.teacher-ai-section-heading h2 {
+  font-size: 18px;
+  margin: 0 0 6px;
+}
+
+.teacher-ai-tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 19px;
+}
+
+.teacher-ai-tool-card {
+  min-height: 175px;
+  padding: 19px;
+  border: 1px solid var(--ai-border);
+  border-radius: 13px;
+  background: var(--ai-panel);
+  color: var(--ai-text);
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.teacher-ai-tool-card:hover {
+  border-color: #7655b4;
+  transform: translateY(-2px);
+}
+
+.teacher-ai-tool-card.selected {
+  border-color: var(--ai-purple);
+  background: #211a31;
+  box-shadow: 0 0 0 1px #9b72ff22;
+}
+
+.teacher-ai-tool-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: #302342;
+  border-radius: 10px;
+  font-size: 19px;
+}
+
+.teacher-ai-tool-card h3 {
+  font-size: 14px;
+  margin: 15px 0 7px;
+}
+
+.teacher-ai-tool-card p {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ai-muted);
+  min-height: 35px;
+}
+
+.teacher-ai-tool-action {
+  color: #b99aff;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.teacher-ai-workspace {
+  margin-top: 28px;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  border-radius: 15px;
+  padding: 24px;
+}
+
+.teacher-ai-workspace-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--ai-border);
+}
+
+.teacher-ai-workspace-heading > div {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.teacher-ai-workspace-icon {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  background: #302342;
+  border-radius: 11px;
+  font-size: 20px;
+}
+
+.teacher-ai-workspace-heading h2 {
+  font-size: 16px;
+  margin: 0 0 5px;
+}
+
+.teacher-ai-beta {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #c4a8ff;
+  background: #382750;
+  padding: 7px 9px;
+  border-radius: 6px;
+}
+
+.teacher-ai-form {
+  display: grid;
+  gap: 17px;
+  padding: 23px 0;
+}
+
+.teacher-ai-field {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.teacher-ai-field label {
+  font-size: 12px;
+  color: #c9c4d7;
+  font-weight: 600;
+}
+
+.teacher-ai-field input,
+.teacher-ai-field select {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 43px;
+  background: #0f0e17;
+  color: #eeeaf8;
+  border: 1px solid #343044;
+  border-radius: 8px;
+  padding: 0 12px;
+  outline: none;
+  font-size: 12px;
+}
+
+.teacher-ai-field input:focus,
+.teacher-ai-field select:focus {
+  border-color: var(--ai-purple);
+}
+
+.teacher-ai-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.teacher-ai-generate {
+  min-height: 45px;
+  border: 0;
+  border-radius: 9px;
+  background: linear-gradient(100deg, #9b72ff, #7046d2);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.teacher-ai-generate:hover {
+  filter: brightness(1.12);
+}
+
+.teacher-ai-generate:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.teacher-ai-output {
+  background: #100f18;
+  border: 1px solid #302b40;
+  border-radius: 11px;
+  min-height: 220px;
+  overflow: hidden;
+}
+
+.teacher-ai-output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px;
+  border-bottom: 1px solid #302b40;
+}
+
+.teacher-ai-output-header h3 {
+  font-size: 13px;
+  margin: 0 0 5px;
+}
+
+.teacher-ai-output-header p {
+  color: var(--ai-muted);
+  font-size: 11px;
+  margin: 0;
+}
+
+.teacher-ai-output-header button {
+  background: #2b2140;
+  color: #c9b5ff;
+  border: 1px solid #59417e;
+  padding: 8px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.teacher-ai-output pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #d7d1e5;
+  font: 12px/1.9 "Segoe UI", sans-serif;
+  padding: 20px;
+  margin: 0;
+}
+
+.teacher-ai-empty,
+.teacher-ai-loading {
+  min-height: 165px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--ai-muted);
+}
+
+.teacher-ai-empty > div {
+  font-size: 28px;
+  color: #9e7ae7;
+}
+
+.teacher-ai-empty h3 {
+  color: #e5def4;
+  font-size: 14px;
+  margin: 10px 0 5px;
+}
+
+.teacher-ai-empty p,
+.teacher-ai-loading p {
+  font-size: 11px;
+}
+
+.teacher-ai-spinner {
+  width: 25px;
+  height: 25px;
+  border: 3px solid #44365e;
+  border-top-color: #b99aff;
+  border-radius: 50%;
+  animation: teacher-ai-spin 0.8s linear infinite;
+}
+
+@keyframes teacher-ai-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.teacher-ai-footer {
+  text-align: center;
+  color: #6f6a7e;
+  font-size: 10px;
+  padding: 28px 0 5px;
+}
+
+@media (max-width: 1050px) {
+  .teacher-ai-sidebar {
+    width: 210px;
+  }
+
+  .teacher-ai-main {
+    padding: 25px;
+  }
+
+  .teacher-ai-tool-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-ai-tool-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .teacher-ai-sidebar {
+    display: none;
+  }
+
+  .teacher-ai-main {
+    padding: 20px 15px;
+  }
+
+  .teacher-ai-header h1 {
+    font-size: 23px;
+  }
+
+  .teacher-ai-hero {
+    padding: 24px 20px;
+  }
+
+  .teacher-ai-hero h2 {
+    font-size: 25px;
+  }
+
+  .teacher-ai-hero-art {
+    display: none;
+  }
+
+  .teacher-ai-workspace {
+    padding: 16px;
+  }
+
+  .teacher-ai-field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-ai-workspace-heading {
+    align-items: flex-start;
+  }
+}

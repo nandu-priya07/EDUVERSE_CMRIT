@@ -1,0 +1,220 @@
+[
+  {
+    "id": "mat-comic-1791480399130",
+    "course_id": "AD23531",
+    "title": "Test Spark Comic",
+    "type": "AI Educational Comic",
+    "description": "Educational comic storyboard visually explaining course topics.",
+    "file_name": null,
+    "original_name": "Test_Spark_Comic.png",
+    "file_size": 0,
+    "file_url": "#",
+    "comic_data": {
+      "title": "Test Spark",
+      "panels": []
+    },
+    "uploaded_by": "Teacher",
+    "uploaded_at": "2026-10-08T17:26:39.130Z"
+  },
+  {
+    "id": "mat-comic-1791480204516",
+    "course_id": "263cb6d9-2c5b-48d5-a48a-d0b4c5aafc40",
+    "title": "Big Data Architecture Concepts",
+    "type": "AI Educational Comic",
+    "description": "AI Educational Comic Storyboard for topic: Big Data Architecture Concepts",
+    "file_name": null,
+    "original_name": "Big_Data_Architecture_Concepts.png",
+    "file_size": 0,
+    "file_url": "/api/comic/result/c94679e3-c66a-4304-8263-ef4cd73cc3fd/image",
+    "comic_data": {
+      "job_id": "c94679e3-c66a-4304-8263-ef4cd73cc3fd",
+      "status": "completed",
+      "progress": 1,
+      "step": "Educational comic generation complete!",
+      "topic": "Big Data Architecture Concepts",
+      "num_panels": 8,
+      "style": "educational comic book",
+      "target_audience": "college",
+      "title": "Big Data Architecture Concepts",
+      "panels": [
+        {
+          "panel_number": 1,
+          "concept": "Core Overview of Big Data Architecture Concepts",
+          "scene": "Modern college computer laboratory with server racks, glowing screens, and interactive displays",
+          "dialogue": [
+            {
+              "character": "Prof. Spark",
+              "text": "Let's explore the fundamental architecture and principles of Big Data Architecture Concepts!"
+            },
+            {
+              "character": "Arun",
+              "text": "I'm eager to learn how this system functions under the hood, Professor!"
+            }
+          ],
+          "caption": "Introduction and high-level architectural overview of Big Data Architecture Concepts.",
+          "visual_prompt": "Professional educational comic book panel. Wide shot of Prof. Spark (male professor, glasses, white lab coat) and student Arun (young male in green hoodie) in a modern computer science laboratory. Expressive faces, detailed environment, clean comic line art.",
+          "panel_image_url": "/api/comic/panel/c94679e3-c66a-4304-8263-ef4cd73cc3fd/1"
+        },
+        {
+          "panel_number": 2,
+          "concept": "Data Processing Engine of Big Data Architecture Concepts",
+          "scene": "Modern college computer laboratory with server racks, glowing screens, and interactive displays",
+          "dialogue": [
+            {
+              "character": "Prof. Spark",
+              "text": "At the heart of Big Data Architecture Concepts is a high-speed execution engine designed for parallel workloads."
+            },
+            {
+              "character": "Arun",
+              "text": "How does the execution engine handle distributed data partitions in memory?"
+            }
+          ],
+          "caption": "Execution engine mechanics and partition handling in Big Data Architecture Concepts.",
+          "visual_prompt": "Professional educational comic book panel. Wide shot of Prof. Spark (male professor, glasses, white lab coat) and student Arun (young male in green hoodie) in a modern computer science laboratory. Expressive faces, detailed environment, clean comic line art.",
+          "panel_image_url": "/api/comic/panel/c94679e3-c66a-4304-8263-ef4cd73cc3fd/2"
+        },
+        {
+          "panel_number": 3,
+          "concept": "Resource & Cluster Management in Big Data Architecture Concepts",
+          "scene": "Modern college computer laboratory with server racks, glowing screens, and interactive displays",
+          "dialogue": [
+            {
+              "character": "Prof. Spark",
+              "text": "Resource managers dynamically allocate CPU cores and RAM executors across worker nodes in Big Data Architecture Concepts."
+            },
+            {
+              "character": "Arun",
+              "text": "So worker nodes execute isolated tasks concurrently within their allocated memory containers?"
+            }
+          ],
+          "caption": "Resource allocation and cluster manager coordination in Big Data Architecture Concepts.",
+          "visual_prompt": "Professional educational comic book panel. Wide shot of Prof. Spark (male professor, glasses, white lab coat) and student Arun (young male in green hoodie) in a modern computer science laboratory. Expressive faces, detailed environment, clean comic line art.",
+          "panel_image_url": "/api/comic/panel/c94679e3-c66a-4304-8263-ef4cd73cc3fd/3"
+        },
+        {
+          "panel_number": 4,
+          "concept": "Optimization & Performance Metrics of Big Data Architecture Concepts",
+          "scene": "Modern college computer laboratory with server racks, glowing screens, and interactive displays",
+          "dialogue": [
+            {
+              "character": "Prof. Spark",
+              "text": "In-memory caching and optimized DAG scheduling eliminate disk bottlenecks in Big Data Architecture Concepts!"
+            },
+            {
+              "character": "Arun",
+              "text": "That explains why processing iterative queries is orders of magnitude faster!"
+            }
+          ],
+          "caption": "Performance optimization strategies and in-memory execution in Big Data Architecture Concepts.",
+          "visual_prompt": "Professional educational comic book panel. Wide shot of Prof. Spark (male professor, glasses, white lab coat) and student Arun (young male in green hoodie) in a modern computer science laboratory. Expressive faces, detailed environment, clean comic line art.",
+          "panel_image_url": "/api/comic/panel/c94679e3-c66a-4304-8263-ef4cd73cc3fd/4"
+        },
+        {
+          "panel_number": 5,
+          "concept": "Fault Tolerance & Lineage in Big Data Architecture Concepts",
+          "scene": "Modern college computer laboratory with server racks, glowing screens, and interactive displays",
+          "dialogue": [
+            {
+              "character": "Prof. Spark",
+              "text": "If a node fails, Big Data Architecture Concepts reconstructs lost data partitions using lineage graphs!"
+            },
+            {
+              "character": "Arun",
+              "text": "So failure recovery is completely automatic without restarting the entire job?"
+            }
+          ],
+          "caption": "Fault tolerance mechanisms and lineage recovery in Big Data Architecture Concepts.",
+          "visual_prompt": "Professional educational comic book panel. Wide shot of Prof. Spark (male professor, glasses, white lab coat) and student Arun (young male in green hoodie) in a modern computer science laboratory. Expressive faces, detailed environment, clean comic line art.",
+          "panel_image_url": "/api/comic/panel/c94679e3-c66a-4304-8263-ef4cd73cc3fd/5"
+        },
+        {
+          "panel_number": 6,
+          "concept": "Real-World Applications of Big Data Architecture Concepts",
+          "scene": "Modern college computer laboratory with server racks, glowing screens, and interactive displays",
+          "dialogue": [
+            {
+              "character": "Prof. Spark",
+              "text": "Mastering Big Data Architecture Concepts allows building enterprise-grade data platforms and real-time AI pipelines!"
+            },
+            {
+              "character": "Arun",
+              "text": "Thank you, Professor! This visual breakdown made the entire architecture crystal clear!"
+            }
+          ],
+          "caption": "Practical deployment and enterprise use cases of Big Data Architecture Concepts.",
+          "visual_prompt": "Professional educational comic book panel. Wide shot of Prof. Spark (male professor, glasses, white lab coat) and student Arun (young male in green hoodie) in a modern computer science laboratory. Expressive faces, detailed environment, clean comic line art.",
+          "panel_image_url": "/api/comic/panel/c94679e3-c66a-4304-8263-ef4cd73cc3fd/6"
+        },
+        {
+          "panel_number": 7,
+          "concept": "Advanced Storage Integration in Big Data Architecture Concepts",
+          "scene": "Modern college computer laboratory with server racks, glowing screens, and interactive displays",
+          "dialogue": [
+            {
+              "character": "Prof. Spark",
+              "text": "Big Data Architecture Concepts seamlessly integrates with distributed filesystems and cloud object stores!"
+            },
+            {
+              "character": "Arun",
+              "text": "So data can be ingested from HDFS, S3, or Kafka without manual schema conversion?"
+            }
+          ],
+          "caption": "Storage integration and data ingestion pipelines in Big Data Architecture Concepts.",
+          "visual_prompt": "Professional educational comic book panel. Wide shot of Prof. Spark (male professor, glasses, white lab coat) and student Arun (young male in green hoodie) in a modern computer science laboratory. Expressive faces, detailed environment, clean comic line art.",
+          "panel_image_url": "/api/comic/panel/c94679e3-c66a-4304-8263-ef4cd73cc3fd/7"
+        },
+        {
+          "panel_number": 8,
+          "concept": "Summary & Architectural Best Practices",
+          "scene": "Modern college computer laboratory with server racks, glowing screens, and interactive displays",
+          "dialogue": [
+            {
+              "character": "Prof. Spark",
+              "text": "Remember to optimize partition sizing and monitor executor memory when deploying Big Data Architecture Concepts!"
+            },
+            {
+              "character": "Arun",
+              "text": "Got it! Proper partitioning keeps all CPU cores saturated without garbage collection pauses."
+            }
+          ],
+          "caption": "Summary of architectural best practices for Big Data Architecture Concepts.",
+          "visual_prompt": "Professional educational comic book panel. Wide shot of Prof. Spark (male professor, glasses, white lab coat) and student Arun (young male in green hoodie) in a modern computer science laboratory. Expressive faces, detailed environment, clean comic line art.",
+          "panel_image_url": "/api/comic/panel/c94679e3-c66a-4304-8263-ef4cd73cc3fd/8"
+        }
+      ],
+      "comic_png_url": "/api/comic/result/c94679e3-c66a-4304-8263-ef4cd73cc3fd/image",
+      "comic_pdf_url": "/api/comic/result/c94679e3-c66a-4304-8263-ef4cd73cc3fd/pdf",
+      "error": null,
+      "created_at": "2026-10-08T22:50:09.344478",
+      "updated_at": "2026-10-08T22:51:28.792361"
+    },
+    "uploaded_by": "Dr. K. Anand",
+    "uploaded_at": "2026-10-08T17:23:24.516Z"
+  },
+  {
+    "id": "mat-1791455990874",
+    "course_id": "263cb6d9-2c5b-48d5-a48a-d0b4c5aafc40",
+    "title": "unit 4 notes",
+    "type": "PDF Document",
+    "description": "unit 4 notes.",
+    "file_name": "1791455990860-4869012_BDA_Unit_4_Material.pdf",
+    "original_name": "BDA Unit 4 Material.pdf",
+    "file_size": 975669,
+    "file_url": "http://localhost:5000/api/materials/download/1791455990860-4869012_BDA_Unit_4_Material.pdf",
+    "uploaded_by": "Dr. K. Anand",
+    "uploaded_at": "2026-10-08T10:39:50.874Z"
+  },
+  {
+    "id": "mat-1791396117278",
+    "course_id": "263cb6d9-2c5b-48d5-a48a-d0b4c5aafc40",
+    "title": "unit 1",
+    "type": "PDF Document",
+    "description": "sdsdc",
+    "file_name": "1791396117266-813261413_nptel.pdf",
+    "original_name": "nptel.pdf",
+    "file_size": 1476711,
+    "file_url": "http://localhost:5000/api/materials/download/1791396117266-813261413_nptel.pdf",
+    "uploaded_by": "Dr. K. Anand",
+    "uploaded_at": "2026-10-07T18:01:57.278Z"
+  }
+]
