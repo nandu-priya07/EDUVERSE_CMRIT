@@ -12,6 +12,8 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
+**/.venv/
+**/venv/
 *.egg-info/
 
 # Stable Diffusion / Hugging Face model downloads & weights
@@ -32,11 +34,35 @@ comic_generator/test_sdxl.png
 *.jpeg
 *.pdf
 
+# Allow essential assets for smart-campus-ai-video
+!smart-campus-ai-video/backend/assets/**
+!smart-campus-ai-video/backend/avatar_lab/MuseTalk/assets/**
+!smart-campus-ai-video/backend/avatar_lab/MuseTalk/data/**
+
 # Dependencies & build outputs
 node_modules/
+**/node_modules/
 frontend/node_modules/
 backend/node_modules/
 frontend/dist/
 backend/dist/
+**/dist/
 scratch/
-design-skills/
+design-skills/
+
+# Smart campus AI video generated & temp outputs
+**/backend/media/
+**/.manim/
+**/.render_tmp/
+smart-campus-ai-video/backend/generated/videos/*
+!smart-campus-ai-video/backend/generated/videos/.gitkeep
+smart-campus-ai-video/backend/generated/audio/*
+!smart-campus-ai-video/backend/generated/audio/.gitkeep
+smart-campus-ai-video/backend/generated/subtitles/*
+!smart-campus-ai-video/backend/generated/subtitles/.gitkeep
+smart-campus-ai-video/backend/generated/scenes/*
+!smart-campus-ai-video/backend/generated/scenes/.gitkeep
+smart-campus-ai-video/backend/generated/avatar/previews/*
+smart-campus-ai-video/backend/avatar_lab/output/*
+smart-campus-ai-video/backend/models/ltx/*
+!smart-campus-ai-video/backend/models/ltx/.gitkeep
