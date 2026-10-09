@@ -17,7 +17,8 @@ import {
   ChevronRight,
   LogOut,
   X,
-  UserCheck
+  UserCheck,
+  Clock,
 } from "lucide-react";
 
 export const adminNavigation = [
@@ -26,6 +27,7 @@ export const adminNavigation = [
   { label: "Faculty", icon: UserRound, path: "/admin/teachers" },
   { label: "Departments", icon: Building2, path: "/admin/departments" },
   { label: "Courses", icon: BookOpen, path: "/admin/courses" },
+  { label: "Timetable", icon: Clock, path: "/admin/timetable" },
   { label: "Assignments", icon: UserCheck, path: "/admin/course-assignments" },
   { label: "Results", icon: Award, path: "/admin/results" },
   { label: "Semesters", icon: CalendarDays, path: "/admin/semesters" },

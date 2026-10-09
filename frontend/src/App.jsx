@@ -38,6 +38,7 @@ import AdminCourseAssignment from "./pages/AdminCourseAssignment";
 import AdminEnrollment from "./pages/AdminEnrollment";
 import AdminResults from "./pages/AdminResults";
 import AdminAnalytics from "./pages/AdminAnalytics";
+import AdminTimetable from "./pages/AdminTimetable";
 
 function App() {
   return (
@@ -80,6 +81,7 @@ function App() {
           <Route path="/admin/teachers" element={<AdminTeachers />} />
           <Route path="/admin/departments" element={<AdminDepartments />} />
           <Route path="/admin/courses" element={<AdminCourses />} />
+          <Route path="/admin/timetable" element={<AdminTimetable />} />
           <Route path="/admin/settings" element={<AdminSettings />} />
           <Route path="/admin/course-assignments" element={<AdminCourseAssignment />} />
           <Route path="/admin/enrollment" element={<AdminEnrollment />} />

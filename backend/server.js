@@ -28,6 +28,7 @@ import studentResultsApiRoutes from "./src/pages/StudentResultsApi.js";
 import materialRoutes from "./src/routes/materialRoutes.js";
 import aiLearningRoutes from "./src/routes/aiLearningRoutes.js";
 import adminAnalyticsRoutes from "./src/routes/adminAnalyticsRoutes.js";
+import adminTimetableRoutes from "./src/routes/adminTimetableRoutes.js";
 
 const app = express();
 
@@ -62,6 +63,7 @@ app.use("/api/admin/enrollment-settings", adminEnrollmentRoutes);
 app.use("/api/admin/enrollment", adminEnrollmentRoutes);
 app.use("/api/admin/results", adminResultsRoutes);
 app.use("/api/admin/analytics", adminAnalyticsRoutes);
+app.use("/api/admin/timetable", adminTimetableRoutes);
 
 
 

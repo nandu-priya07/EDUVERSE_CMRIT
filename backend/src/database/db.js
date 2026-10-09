@@ -766,6 +766,25 @@ export async function initDatabase() {
       );
     `;
 
+    const createTimetablesTableQuery = `
+      CREATE TABLE IF NOT EXISTS timetables (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        course_id UUID REFERENCES courses(id) ON DELETE CASCADE,
+        teacher_uid VARCHAR(255) REFERENCES users(uid) ON DELETE CASCADE,
+        department VARCHAR(255) NOT NULL,
+        semester INTEGER NOT NULL,
+        section VARCHAR(50) NOT NULL,
+        academic_year VARCHAR(50) DEFAULT '2026-2027',
+        day_of_week VARCHAR(20) NOT NULL,
+        start_time VARCHAR(20) NOT NULL,
+        end_time VARCHAR(20) NOT NULL,
+        slot_number INTEGER DEFAULT 1,
+        room_number VARCHAR(100) DEFAULT 'Classroom 101',
+        created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+
     await client.query(createQuizzesTableQuery);
     await client.query(createQuizQuestionsTableQuery);
     await client.query(createQuizAttemptsTableQuery);
@@ -778,6 +797,7 @@ export async function initDatabase() {
     await client.query(createResultAuditLogsTableQuery);
     await client.query(createAIRequestLogsTableQuery);
     await client.query(createLMSActivityLogsTableQuery);
+    await client.query(createTimetablesTableQuery);
 
     try {
       await client.query(`CREATE INDEX IF NOT EXISTS idx_student_results_student ON student_results(student_uid);`);
@@ -786,6 +806,8 @@ export async function initDatabase() {
       await client.query(`CREATE INDEX IF NOT EXISTS idx_ai_request_logs_feature ON ai_request_logs(feature_name);`);
       await client.query(`CREATE INDEX IF NOT EXISTS idx_ai_request_logs_created ON ai_request_logs(created_at);`);
       await client.query(`CREATE INDEX IF NOT EXISTS idx_lms_activity_user ON lms_activity_logs(user_uid, activity_type);`);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_timetables_dept_sem_sec ON timetables(department, semester, section);`);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_timetables_teacher ON timetables(teacher_uid, day_of_week);`);
     } catch (e) {}
 
     try { await client.query(createIndexesQuery); } catch (e) {}

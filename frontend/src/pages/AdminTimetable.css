@@ -1,0 +1,436 @@
+/* AdminTimetable.css - SmartCampus Admin Timetable Assignment */
+
+.at-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0b0813;
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.at-main {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 36px;
+  background: #0d0a18;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.at-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.at-title-section h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.at-title-section p {
+  color: #94a3b8;
+  font-size: 13px;
+  margin: 0;
+}
+
+.at-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.at-btn-primary {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.3);
+  transition: all 0.2s ease;
+}
+
+.at-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.45);
+}
+
+.at-btn-secondary {
+  background: #161224;
+  border: 1px solid #292244;
+  color: #c084fc;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.at-btn-secondary:hover {
+  background: #211a36;
+}
+
+/* Filter Controls Bar */
+.at-filter-card {
+  background: #141022;
+  border: 1px solid #28213a;
+  border-radius: 14px;
+  padding: 18px 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.at-filter-group {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.at-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.at-field label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.at-select {
+  background: #0b0813;
+  border: 1px solid #2d2645;
+  color: #f8fafc;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+  min-width: 140px;
+  transition: border-color 0.2s ease;
+}
+
+.at-select:focus {
+  border-color: #a855f7;
+}
+
+.at-view-toggle {
+  display: flex;
+  background: #0b0813;
+  border: 1px solid #2d2645;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.at-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 6px 14px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.at-toggle-btn.active {
+  background: #7c3aed;
+  color: #ffffff;
+}
+
+/* Weekly Timetable Grid Matrix */
+.at-grid-container {
+  background: #141022;
+  border: 1px solid #28213a;
+  border-radius: 16px;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.at-grid-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 10px;
+  min-width: 900px;
+}
+
+.at-grid-table th {
+  background: #1b162d;
+  color: #d8b4fe;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  border: 1px solid #2d2448;
+}
+
+.at-time-col {
+  width: 150px;
+  background: #0f0b1a !important;
+  color: #94a3b8 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+  padding-left: 16px !important;
+}
+
+.at-period-time {
+  font-size: 11px;
+  color: #64748b;
+  display: block;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.at-cell {
+  background: #0b0813;
+  border: 1px dashed #292240;
+  border-radius: 12px;
+  min-height: 100px;
+  vertical-align: top;
+  padding: 10px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.at-cell:hover {
+  border-color: #5b408e;
+}
+
+.at-cell-break {
+  background: rgba(168, 85, 247, 0.05);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  text-align: center;
+  vertical-align: middle;
+  color: #a855f7;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+/* Slot Card inside Timetable Cell */
+.at-slot-card {
+  background: linear-gradient(135deg, #1c1533 0%, #261b44 100%);
+  border: 1px solid #433068;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.at-slot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.at-course-code {
+  background: rgba(168, 85, 247, 0.25);
+  color: #d8b4fe;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+.at-slot-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.at-slot-card:hover .at-slot-actions {
+  opacity: 1;
+}
+
+.at-icon-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.at-icon-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.at-icon-btn.delete:hover {
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.at-course-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #f8fafc;
+  line-height: 1.3;
+}
+
+.at-teacher-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #a78bfa;
+}
+
+.at-room-pill {
+  font-size: 10px;
+  color: #94a3b8;
+  background: #0b0813;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  align-self: flex-start;
+  border: 1px solid #231c38;
+}
+
+.at-empty-assign {
+  width: 100%;
+  height: 100%;
+  min-height: 70px;
+  background: transparent;
+  border: none;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.at-empty-assign:hover {
+  background: rgba(168, 85, 247, 0.1);
+  color: #c084fc;
+}
+
+/* Staff Schedule List View Table */
+.at-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.at-table th {
+  background: #181328;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #28213a;
+}
+
+.at-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #1e1930;
+  font-size: 13px;
+  color: #e2e8f0;
+}
+
+.at-table tbody tr:hover {
+  background: rgba(168, 85, 247, 0.04);
+}
+
+/* Modal Popup */
+.at-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  display: grid;
+  placeItems: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.at-modal {
+  background: #161224;
+  border: 1px solid #2e264a;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 560px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+
+.at-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #282138;
+  padding-bottom: 14px;
+}
+
+.at-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.at-close-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.at-alert-danger {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #f87171;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
