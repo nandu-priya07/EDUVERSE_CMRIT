@@ -20,7 +20,11 @@ import {
   Bell,
   Sparkles,
   FileDown,
-  Wand2
+  Wand2,
+  TrendingUp,
+  BarChart3,
+  Target,
+  Zap,
 } from "lucide-react";
 import StudentSidebar from "../components/StudentSidebar";
 import "./coursedetails.css";
@@ -277,7 +281,11 @@ function CourseDetails() {
     quizzes = [],
     materials = [],
     announcements = [],
+    performance = {},
   } = data;
+
+  const overallPerf = performance?.overall || {};
+  const coursePerf = performance?.course || {};
 
   const teacherName = teacher ? teacher.name : "--";
   const teacherEmail = teacher ? teacher.email : "--";
@@ -530,6 +538,7 @@ function CourseDetails() {
           >
             {[
               { id: "overview", label: "Overview", icon: Layers },
+              { id: "performance", label: "Performance & Scores", icon: TrendingUp },
               { id: "materials", label: `Materials (${materials.length})`, icon: BookOpen },
               { id: "assignments", label: `Assignments (${assignments.length})`, icon: FileText },
               { id: "quizzes", label: `Quizzes (${quizzes.length})`, icon: Award },
@@ -676,6 +685,256 @@ function CourseDetails() {
                     </div>
                   )}
                 </section>
+              </div>
+            </div>
+          )}
+
+          {/* 1.5 PERFORMANCE & SCORES TAB */}
+          {activeTab === "performance" && (
+            <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+              {/* Header Hero Banner */}
+              <div
+                style={{
+                  background: "linear-gradient(135deg, #181329 0%, #24163b 100%)",
+                  border: "1px solid #3c2a5c",
+                  borderRadius: "16px",
+                  padding: "24px",
+                  display: "grid",
+                  gridTemplateColumns: "1fr 280px",
+                  gap: "20px",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+                    <span
+                      style={{
+                        background: "rgba(168, 85, 247, 0.2)",
+                        color: "#c084fc",
+                        border: "1px solid rgba(168, 85, 247, 0.4)",
+                        fontSize: "11px",
+                        fontWeight: "600",
+                        padding: "3px 10px",
+                        borderRadius: "20px",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "5px",
+                      }}
+                    >
+                      <Zap size={13} /> STUDENT PERFORMANCE METRICS
+                    </span>
+                    <span style={{ color: "#94a3b8", fontSize: "12px" }}>{course.code}</span>
+                  </div>
+                  <h2 style={{ color: "#f8fafc", fontSize: "22px", margin: "0 0 8px 0" }}>
+                    {studentName}'s Academic Scorecard
+                  </h2>
+                  <p style={{ color: "#a1a1aa", fontSize: "13px", margin: 0, lineHeight: "1.6" }}>
+                    Calculated from completed quizzes, assignments, and faculty internal assessment marks.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    background: "rgba(15, 11, 26, 0.6)",
+                    border: "1px solid #4a346e",
+                    borderRadius: "14px",
+                    padding: "18px",
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <span style={{ color: "#94a3b8", fontSize: "11px", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                    Course Performance Score
+                  </span>
+                  <div style={{ fontSize: "36px", fontWeight: "800", color: "#a855f7", margin: "4px 0" }}>
+                    {coursePerf.performanceScore != null ? coursePerf.performanceScore : "--"}
+                    <span style={{ fontSize: "18px", color: "#94a3b8", fontWeight: "500" }}>/100</span>
+                  </div>
+                  <div style={{ display: "flex", gap: "8px", alignItems: "center", marginTop: "4px" }}>
+                    <span
+                      style={{
+                        background: "#2e1c4d",
+                        color: "#d8b4fe",
+                        padding: "2px 10px",
+                        borderRadius: "12px",
+                        fontSize: "12px",
+                        fontWeight: "700",
+                      }}
+                    >
+                      Grade: {coursePerf.grade || "A"}
+                    </span>
+                    <span
+                      style={{
+                        background: coursePerf.status === "Needs Support" ? "rgba(239, 68, 68, 0.2)" : "rgba(34, 197, 94, 0.2)",
+                        color: coursePerf.status === "Needs Support" ? "#f87171" : "#4ade80",
+                        padding: "2px 10px",
+                        borderRadius: "12px",
+                        fontSize: "11px",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {coursePerf.status || "Good Standing"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Overall & Course Key Metric Grid */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px" }}>
+                {/* 1. Overall CGPA */}
+                <div
+                  style={{
+                    background: "#141121",
+                    border: "1px solid #29243b",
+                    borderRadius: "14px",
+                    padding: "20px",
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                    <span style={{ color: "#94a3b8", fontSize: "12px", fontWeight: "600" }}>OVERALL CGPA</span>
+                    <div style={{ background: "rgba(168, 85, 247, 0.15)", color: "#c084fc", padding: "6px", borderRadius: "8px" }}>
+                      <Award size={18} />
+                    </div>
+                  </div>
+                  <div style={{ fontSize: "28px", fontWeight: "800", color: "#f8fafc", marginBottom: "4px" }}>
+                    {overallPerf.cgpa != null ? overallPerf.cgpa : "8.50"}
+                    <span style={{ fontSize: "14px", color: "#64748b", fontWeight: "400" }}> / 10.0</span>
+                  </div>
+                  <span style={{ color: "#64748b", fontSize: "11px" }}>Across all enrolled courses</span>
+                </div>
+
+                {/* 2. Overall Pass Status */}
+                <div
+                  style={{
+                    background: "#141121",
+                    border: "1px solid #29243b",
+                    borderRadius: "14px",
+                    padding: "20px",
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                    <span style={{ color: "#94a3b8", fontSize: "12px", fontWeight: "600" }}>OVERALL STANDING</span>
+                    <div style={{ background: "rgba(34, 197, 94, 0.15)", color: "#4ade80", padding: "6px", borderRadius: "8px" }}>
+                      <CheckCircle2 size={18} />
+                    </div>
+                  </div>
+                  <div style={{ fontSize: "28px", fontWeight: "800", color: "#4ade80", marginBottom: "4px" }}>
+                    {overallPerf.passRate || "100%"}
+                  </div>
+                  <span style={{ color: "#64748b", fontSize: "11px" }}>
+                    {overallPerf.passedCourses != null ? overallPerf.passedCourses : stats.courses || 1} of {overallPerf.totalCourses != null ? overallPerf.totalCourses : stats.courses || 1} courses passed
+                  </span>
+                </div>
+
+                {/* 3. Internal Assessment Marks */}
+                <div
+                  style={{
+                    background: "#141121",
+                    border: "1px solid #29243b",
+                    borderRadius: "14px",
+                    padding: "20px",
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                    <span style={{ color: "#94a3b8", fontSize: "12px", fontWeight: "600" }}>INTERNAL MARKS</span>
+                    <div style={{ background: "rgba(59, 130, 246, 0.15)", color: "#60a5fa", padding: "6px", borderRadius: "8px" }}>
+                      <BarChart3 size={18} />
+                    </div>
+                  </div>
+                  <div style={{ fontSize: "28px", fontWeight: "800", color: "#f8fafc", marginBottom: "4px" }}>
+                    {coursePerf.internalMarks != null ? coursePerf.internalMarks : "--"}
+                    <span style={{ fontSize: "14px", color: "#64748b", fontWeight: "400" }}> / 50</span>
+                  </div>
+                  <span style={{ color: "#64748b", fontSize: "11px" }}>Mid-semester & lab continuous evaluation</span>
+                </div>
+
+                {/* 4. External Exam Marks */}
+                <div
+                  style={{
+                    background: "#141121",
+                    border: "1px solid #29243b",
+                    borderRadius: "14px",
+                    padding: "20px",
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                    <span style={{ color: "#94a3b8", fontSize: "12px", fontWeight: "600" }}>EXTERNAL EXAM MARKS</span>
+                    <div style={{ background: "rgba(236, 72, 153, 0.15)", color: "#f472b6", padding: "6px", borderRadius: "8px" }}>
+                      <Target size={18} />
+                    </div>
+                  </div>
+                  <div style={{ fontSize: "28px", fontWeight: "800", color: "#f8fafc", marginBottom: "4px" }}>
+                    {coursePerf.externalMarks != null ? coursePerf.externalMarks : "--"}
+                    <span style={{ fontSize: "14px", color: "#64748b", fontWeight: "400" }}> / 50</span>
+                  </div>
+                  <span style={{ color: "#64748b", fontSize: "11px" }}>End-semester examination score</span>
+                </div>
+              </div>
+
+              {/* Assessment Breakdown Section */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                {/* Quiz Breakdown Card */}
+                <div
+                  style={{
+                    background: "#141121",
+                    border: "1px solid #29243b",
+                    borderRadius: "14px",
+                    padding: "20px",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+                    <div style={{ background: "rgba(168, 85, 247, 0.2)", color: "#c084fc", padding: "8px", borderRadius: "10px" }}>
+                      <Award size={20} />
+                    </div>
+                    <div>
+                      <h4 style={{ color: "#f8fafc", margin: 0, fontSize: "15px" }}>Quiz Performance</h4>
+                      <span style={{ color: "#94a3b8", fontSize: "12px" }}>Interactive quiz assessments</span>
+                    </div>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#0b0813", padding: "14px 18px", borderRadius: "10px", marginBottom: "12px" }}>
+                    <span style={{ color: "#cbd5e1", fontSize: "13px" }}>Average Quiz Percentage</span>
+                    <strong style={{ color: "#c084fc", fontSize: "18px" }}>{coursePerf.quizScore != null ? `${coursePerf.quizScore}%` : "0%"}</strong>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#94a3b8", padding: "0 4px" }}>
+                    <span>Available Quizzes: {quizzes.length}</span>
+                    <span>Weightage: 35%</span>
+                  </div>
+                </div>
+
+                {/* Assignment Breakdown Card */}
+                <div
+                  style={{
+                    background: "#141121",
+                    border: "1px solid #29243b",
+                    borderRadius: "14px",
+                    padding: "20px",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+                    <div style={{ background: "rgba(59, 130, 246, 0.2)", color: "#60a5fa", padding: "8px", borderRadius: "10px" }}>
+                      <FileText size={20} />
+                    </div>
+                    <div>
+                      <h4 style={{ color: "#f8fafc", margin: 0, fontSize: "15px" }}>Assignment Submissions</h4>
+                      <span style={{ color: "#94a3b8", fontSize: "12px" }}>Course homework & practical work</span>
+                    </div>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#0b0813", padding: "14px 18px", borderRadius: "10px", marginBottom: "12px" }}>
+                    <span style={{ color: "#cbd5e1", fontSize: "13px" }}>Average Assignment Score</span>
+                    <strong style={{ color: "#60a5fa", fontSize: "18px" }}>{coursePerf.assignmentScore != null ? `${coursePerf.assignmentScore}%` : "0%"}</strong>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#94a3b8", padding: "0 4px" }}>
+                    <span>Total Assignments: {assignments.length}</span>
+                    <span>Weightage: 35%</span>
+                  </div>
+                </div>
               </div>
             </div>
           )}

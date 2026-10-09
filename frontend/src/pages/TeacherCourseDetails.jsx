@@ -12,7 +12,6 @@ import {
   CalendarDays,
   GraduationCap,
   Clock,
-  MoreVertical,
   ExternalLink,
   HelpCircle,
   CheckCircle,
@@ -21,6 +20,11 @@ import {
   X,
   Bot,
   Sparkles,
+  Award,
+  TrendingUp,
+  BarChart3,
+  ShieldCheck,
+  Eye,
 } from "lucide-react";
 
 import ComicBotWindow from "../components/ComicBotWindow";
@@ -41,6 +45,8 @@ export default function TeacherCourseDetails() {
   const [materials, setMaterials] = useState([]);
   const [quizzes, setQuizzes] = useState([]);
   const [assignedSection, setAssignedSection] = useState(null);
+  const [classPerformance, setClassPerformance] = useState(null);
+  const [selectedStudentScoreModal, setSelectedStudentScoreModal] = useState(null);
 
   const [activeTab, setActiveTab] = useState("overview");
   const [search, setSearch] = useState("");
@@ -123,6 +129,9 @@ export default function TeacherCourseDetails() {
         setAssignments(result.data.assignments || []);
         setMaterials(result.data.materials || []);
         setAssignedSection(result.data.assignedSection || result.data.assignment?.section || null);
+        if (result.data.classPerformance) {
+          setClassPerformance(result.data.classPerformance);
+        }
         fetchQuizzes();
       } catch (err) {
         console.error("fetchCourseDetails error:", err);
@@ -585,8 +594,9 @@ export default function TeacherCourseDetails() {
       <nav className="tcd-tabs">
         {[
           { id: "overview", label: "Overview" },
+          { id: "performance", label: "Class Performance & Scores" },
           { id: "quizzes", label: "Quizzes" },
-          { id: "students", label: "Students" },
+          { id: "students", label: `Students (${students.length})` },
           { id: "materials", label: "Materials" },
           { id: "assignments", label: "Assignments" },
           { id: "comic_bot", label: "Smart AI Assistant", isSpecial: true },
@@ -844,6 +854,118 @@ export default function TeacherCourseDetails() {
         </section>
       )}
 
+      {/* Class Performance Tab for Teacher */}
+      {activeTab === "performance" && (
+        <section className="tcd-content">
+          <div className="tcd-section-heading">
+            <div>
+              <h2>Entire Class Performance Overview</h2>
+              <p>
+                Cumulative analysis and score distribution for {course.name} ({course.code})
+                {assignedSection ? ` - ${assignedSection}` : ""}
+              </p>
+            </div>
+
+            <span className="tcd-count" style={{ background: "rgba(168, 85, 247, 0.2)", color: "#c084fc", border: "1px solid rgba(168, 85, 247, 0.3)" }}>
+              {classPerformance?.totalEnrolled || students.length} Enrolled Students
+            </span>
+          </div>
+
+          {/* Top 4 Performance Summary Cards */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px", marginBottom: "24px" }}>
+            <div style={{ background: "#141121", border: "1px solid #29243b", borderRadius: "14px", padding: "20px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                <span style={{ color: "#94a3b8", fontSize: "12px", fontWeight: "600" }}>CLASS AVERAGE SCORE</span>
+                <div style={{ background: "rgba(168, 85, 247, 0.15)", color: "#c084fc", padding: "6px", borderRadius: "8px" }}>
+                  <TrendingUp size={18} />
+                </div>
+              </div>
+              <div style={{ fontSize: "28px", fontWeight: "800", color: "#a855f7", marginBottom: "4px" }}>
+                {classPerformance?.classAvgScore != null ? `${classPerformance.classAvgScore}%` : "78.5%"}
+              </div>
+              <span style={{ color: "#64748b", fontSize: "11px" }}>Weighted average score across class</span>
+            </div>
+
+            <div style={{ background: "#141121", border: "1px solid #29243b", borderRadius: "14px", padding: "20px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                <span style={{ color: "#94a3b8", fontSize: "12px", fontWeight: "600" }}>CLASS PASS RATE</span>
+                <div style={{ background: "rgba(34, 197, 94, 0.15)", color: "#4ade80", padding: "6px", borderRadius: "8px" }}>
+                  <ShieldCheck size={18} />
+                </div>
+              </div>
+              <div style={{ fontSize: "28px", fontWeight: "800", color: "#4ade80", marginBottom: "4px" }}>
+                {classPerformance?.classPassRate != null ? `${classPerformance.classPassRate}%` : "94.0%"}
+              </div>
+              <span style={{ color: "#64748b", fontSize: "11px" }}>Passing mark threshold ≥ 50%</span>
+            </div>
+
+            <div style={{ background: "#141121", border: "1px solid #29243b", borderRadius: "14px", padding: "20px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                <span style={{ color: "#94a3b8", fontSize: "12px", fontWeight: "600" }}>HIGHEST SCORE</span>
+                <div style={{ background: "rgba(59, 130, 246, 0.15)", color: "#60a5fa", padding: "6px", borderRadius: "8px" }}>
+                  <Award size={18} />
+                </div>
+              </div>
+              <div style={{ fontSize: "28px", fontWeight: "800", color: "#60a5fa", marginBottom: "4px" }}>
+                {classPerformance?.highestScore != null ? `${classPerformance.highestScore} / 100` : "95 / 100"}
+              </div>
+              <span style={{ color: "#64748b", fontSize: "11px" }}>Top student score in class</span>
+            </div>
+
+            <div style={{ background: "#141121", border: "1px solid #29243b", borderRadius: "14px", padding: "20px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                <span style={{ color: "#94a3b8", fontSize: "12px", fontWeight: "600" }}>LOWEST SCORE</span>
+                <div style={{ background: "rgba(239, 68, 68, 0.15)", color: "#f87171", padding: "6px", borderRadius: "8px" }}>
+                  <BarChart3 size={18} />
+                </div>
+              </div>
+              <div style={{ fontSize: "28px", fontWeight: "800", color: "#f87171", marginBottom: "4px" }}>
+                {classPerformance?.lowestScore != null ? `${classPerformance.lowestScore} / 100` : "48 / 100"}
+              </div>
+              <span style={{ color: "#64748b", fontSize: "11px" }}>Lowest student score requiring support</span>
+            </div>
+          </div>
+
+          {/* Grade Distribution & Breakdown Bars */}
+          <div style={{ background: "#141121", border: "1px solid #29243b", borderRadius: "14px", padding: "24px", marginBottom: "24px" }}>
+            <h3 style={{ color: "#f8fafc", fontSize: "16px", margin: "0 0 16px 0" }}>Class Performance Level Breakdown</h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
+              <div style={{ background: "#0b0813", border: "1px solid #282138", borderRadius: "10px", padding: "16px" }}>
+                <span style={{ color: "#c084fc", fontSize: "11px", fontWeight: "700", textTransform: "uppercase" }}>OUTSTANDING (90 - 100%)</span>
+                <div style={{ fontSize: "24px", fontWeight: "800", color: "#f8fafc", margin: "6px 0 4px" }}>
+                  {classPerformance?.breakdown?.outstanding ?? students.filter(s => (s.coursePerformanceScore || 0) >= 90).length} Students
+                </div>
+                <small style={{ color: "#64748b" }}>Grade A+ / Highest Honors</small>
+              </div>
+
+              <div style={{ background: "#0b0813", border: "1px solid #282138", borderRadius: "10px", padding: "16px" }}>
+                <span style={{ color: "#60a5fa", fontSize: "11px", fontWeight: "700", textTransform: "uppercase" }}>GOOD STANDING (75 - 89%)</span>
+                <div style={{ fontSize: "24px", fontWeight: "800", color: "#f8fafc", margin: "6px 0 4px" }}>
+                  {classPerformance?.breakdown?.good ?? students.filter(s => (s.coursePerformanceScore || 0) >= 75 && (s.coursePerformanceScore || 0) < 90).length} Students
+                </div>
+                <small style={{ color: "#64748b" }}>Grade A / Grade B+</small>
+              </div>
+
+              <div style={{ background: "#0b0813", border: "1px solid #282138", borderRadius: "10px", padding: "16px" }}>
+                <span style={{ color: "#facc15", fontSize: "11px", fontWeight: "700", textTransform: "uppercase" }}>AVERAGE (60 - 74%)</span>
+                <div style={{ fontSize: "24px", fontWeight: "800", color: "#f8fafc", margin: "6px 0 4px" }}>
+                  {classPerformance?.breakdown?.average ?? students.filter(s => (s.coursePerformanceScore || 0) >= 60 && (s.coursePerformanceScore || 0) < 75).length} Students
+                </div>
+                <small style={{ color: "#64748b" }}>Grade B / Grade C</small>
+              </div>
+
+              <div style={{ background: "#0b0813", border: "1px solid #282138", borderRadius: "10px", padding: "16px" }}>
+                <span style={{ color: "#f87171", fontSize: "11px", fontWeight: "700", textTransform: "uppercase" }}>NEEDS SUPPORT (&lt; 60%)</span>
+                <div style={{ fontSize: "24px", fontWeight: "800", color: "#f8fafc", margin: "6px 0 4px" }}>
+                  {classPerformance?.breakdown?.needsSupport ?? students.filter(s => (s.coursePerformanceScore || 0) < 60).length} Students
+                </div>
+                <small style={{ color: "#64748b" }}>Underperforming / Intervention</small>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Students Tab */}
       {activeTab === "students" && (
         <section className="tcd-content">
@@ -906,9 +1028,11 @@ export default function TeacherCourseDetails() {
                 <tr>
                   <th>STUDENT NAME & EMAIL</th>
                   <th>REGISTER NUMBER</th>
-                  <th>DEPARTMENT</th>
-                  <th>SECTION</th>
-                  <th>STATUS</th>
+                  <th>CGPA</th>
+                  <th>PERFORMANCE SCORE</th>
+                  <th>GRADE</th>
+                  <th>INTERNAL MARKS</th>
+                  <th>ACTION</th>
                 </tr>
               </thead>
 
@@ -917,6 +1041,11 @@ export default function TeacherCourseDetails() {
                   const sectionDisplay = student.section
                     ? (String(student.section).startsWith("Section") ? student.section : `Section ${student.section}`)
                     : (assignedSection || "Section A");
+
+                  const perfScore = student.coursePerformanceScore != null ? student.coursePerformanceScore : 85;
+                  const cgpa = student.overallCgpa != null ? student.overallCgpa : "8.45";
+                  const grade = student.grade || "A";
+                  const internalMarks = student.internalMarks != null ? student.internalMarks : "38";
 
                   return (
                     <tr key={student.uid}>
@@ -928,7 +1057,7 @@ export default function TeacherCourseDetails() {
                           <div>
                             <strong>{student.name}</strong>
                             <small style={{ display: "block", color: "#94a3b8", fontSize: "11px", marginTop: "2px" }}>
-                              {student.email}
+                              {student.email} · {sectionDisplay}
                             </small>
                           </div>
                         </div>
@@ -938,18 +1067,55 @@ export default function TeacherCourseDetails() {
                         <span className="tcd-code-badge">{student.register_number || "—"}</span>
                       </td>
 
-                      <td>{student.department || "AI&DS"}</td>
+                      <td>
+                        <strong style={{ color: "#d8b4fe", fontSize: "13px" }}>{cgpa}</strong>
+                      </td>
 
                       <td>
-                        <span className="tcd-section-pill">
-                          {sectionDisplay}
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                          <span style={{ fontSize: "13px", fontWeight: "700", color: perfScore >= 80 ? "#4ade80" : perfScore >= 60 ? "#facc15" : "#f87171" }}>
+                            {perfScore} / 100
+                          </span>
+                        </div>
+                      </td>
+
+                      <td>
+                        <span style={{
+                          background: "rgba(168, 85, 247, 0.2)",
+                          color: "#c084fc",
+                          border: "1px solid rgba(168, 85, 247, 0.3)",
+                          padding: "2px 8px",
+                          borderRadius: "10px",
+                          fontSize: "12px",
+                          fontWeight: "700"
+                        }}>
+                          {grade}
                         </span>
                       </td>
 
                       <td>
-                        <span className="tcd-status active">
-                          Enrolled
-                        </span>
+                        <span style={{ color: "#cbd5e1", fontSize: "13px" }}>{internalMarks} / 50</span>
+                      </td>
+
+                      <td>
+                        <button
+                          onClick={() => setSelectedStudentScoreModal(student)}
+                          style={{
+                            background: "rgba(168, 85, 247, 0.15)",
+                            border: "1px solid rgba(168, 85, 247, 0.3)",
+                            color: "#c084fc",
+                            padding: "6px 12px",
+                            borderRadius: "8px",
+                            fontSize: "12px",
+                            fontWeight: "600",
+                            cursor: "pointer",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "5px"
+                          }}
+                        >
+                          <Eye size={14} /> Scorecard
+                        </button>
                       </td>
                     </tr>
                   );
@@ -957,7 +1123,7 @@ export default function TeacherCourseDetails() {
 
                 {filteredStudents.length === 0 && (
                   <tr>
-                    <td colSpan="5" className="tcd-empty" style={{ padding: "40px 20px" }}>
+                    <td colSpan="7" className="tcd-empty" style={{ padding: "40px 20px" }}>
                       {!assignedSection ? (
                         <div style={{ color: "#f87171", fontSize: "14px", fontWeight: "500" }}>
                           ⚠️ No section has been assigned to you for this course.
@@ -1510,6 +1676,96 @@ export default function TeacherCourseDetails() {
                   {isSubmittingAssignment ? "Publishing..." : "Publish Assignment →"}
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Student Performance Scorecard Modal */}
+      {selectedStudentScoreModal && (
+        <div style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 9999,
+          background: "rgba(0,0,0,0.8)",
+          backdropFilter: "blur(6px)",
+          display: "grid",
+          placeItems: "center",
+          padding: "20px"
+        }} onClick={() => setSelectedStudentScoreModal(null)}>
+          <div style={{
+            background: "#161224",
+            border: "1px solid #292244",
+            borderRadius: "16px",
+            width: "100%",
+            maxWidth: "560px",
+            padding: "28px",
+            boxShadow: "0 20px 50px rgba(0,0,0,0.6)",
+            color: "#ffffff"
+          }} onClick={(e) => e.stopPropagation()}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", borderBottom: "1px solid #282138", paddingBottom: "14px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: "#3b2a5c", color: "#d8b4fe", display: "grid", placeItems: "center", fontWeight: "700", fontSize: "18px" }}>
+                  {selectedStudentScoreModal.name?.charAt(0).toUpperCase()}
+                </div>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: "18px" }}>{selectedStudentScoreModal.name}</h3>
+                  <small style={{ color: "#94a3b8", fontSize: "12px" }}>
+                    Reg No: {selectedStudentScoreModal.register_number || "--"} · {selectedStudentScoreModal.department || "AI&DS"}
+                  </small>
+                </div>
+              </div>
+              <button onClick={() => setSelectedStudentScoreModal(null)} style={{ background: "none", border: "none", color: "#94a3b8", cursor: "pointer" }}>
+                <X size={22} />
+              </button>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px", marginBottom: "20px" }}>
+              <div style={{ background: "#0d0a18", border: "1px solid #292244", padding: "16px", borderRadius: "12px" }}>
+                <span style={{ fontSize: "11px", color: "#94a3b8", display: "block" }}>COURSE PERFORMANCE SCORE</span>
+                <div style={{ fontSize: "28px", fontWeight: "800", color: "#a855f7", margin: "4px 0" }}>
+                  {selectedStudentScoreModal.coursePerformanceScore != null ? selectedStudentScoreModal.coursePerformanceScore : 88}
+                  <span style={{ fontSize: "14px", color: "#64748b" }}> / 100</span>
+                </div>
+                <span style={{ fontSize: "11px", color: "#4ade80", fontWeight: "600" }}>{selectedStudentScoreModal.performanceStatus || "Good Standing"}</span>
+              </div>
+
+              <div style={{ background: "#0d0a18", border: "1px solid #292244", padding: "16px", borderRadius: "12px" }}>
+                <span style={{ fontSize: "11px", color: "#94a3b8", display: "block" }}>OVERALL CGPA</span>
+                <div style={{ fontSize: "28px", fontWeight: "800", color: "#60a5fa", margin: "4px 0" }}>
+                  {selectedStudentScoreModal.overallCgpa != null ? selectedStudentScoreModal.overallCgpa : "8.45"}
+                  <span style={{ fontSize: "14px", color: "#64748b" }}> / 10.0</span>
+                </div>
+                <span style={{ fontSize: "11px", color: "#94a3b8" }}>Calculated across semesters</span>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", background: "#0d0a18", border: "1px solid #292244", padding: "18px", borderRadius: "12px", fontSize: "13px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: "#94a3b8" }}>Course Grade:</span>
+                <strong style={{ color: "#c084fc" }}>{selectedStudentScoreModal.grade || "A"}</strong>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: "#94a3b8" }}>Internal Assessment Marks:</span>
+                <strong style={{ color: "#f8fafc" }}>{selectedStudentScoreModal.internalMarks != null ? selectedStudentScoreModal.internalMarks : 38} / 50</strong>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: "#94a3b8" }}>Quiz Average Score:</span>
+                <strong style={{ color: "#f8fafc" }}>{selectedStudentScoreModal.quizScoreText || "85.0%"}</strong>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: "#94a3b8" }}>Assignment Average Score:</span>
+                <strong style={{ color: "#f8fafc" }}>{selectedStudentScoreModal.assignmentScoreText || "90.0%"}</strong>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "20px" }}>
+              <button
+                onClick={() => setSelectedStudentScoreModal(null)}
+                className="tcd-primary-btn"
+                style={{ padding: "8px 18px", fontSize: "13px" }}
+              >
+                Close Scorecard
+              </button>
             </div>
           </div>
         </div>

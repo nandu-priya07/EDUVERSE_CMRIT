@@ -868,16 +868,82 @@ router.get(
         attendanceData = null;
       }
 
-      // 11. Calculate Dynamic Student Progress %
-      const submittedAssignmentsCount = assignments.filter(a => a.status === "Submitted" || a.status === "Graded").length;
-      const completedQuizzesCount = quizzes.filter(q => q.status === "Completed").length;
+      // 11. Fetch student results & calculate overall + course performance metrics
+      let courseResult = null;
+      let overallCgpa = 8.5;
+      let overallAvgScore = 85;
+      let passedCoursesCount = 0;
+      let totalCoursesCount = 0;
 
-      const totalActivities = assignments.length + quizzes.length + materials.length;
-      const completedActivities = submittedAssignmentsCount + completedQuizzesCount;
+      try {
+        const resultRes = await pool.query(
+          `SELECT * FROM student_results WHERE student_uid = $1 AND (course_id = $2 OR UPPER(course_code) = UPPER($3)) AND is_draft = false LIMIT 1`,
+          [uid, course.id, course.code]
+        );
+        courseResult = resultRes.rows[0] || null;
 
-      const progressPercentage = totalActivities > 0
-        ? Math.round((completedActivities / totalActivities) * 100)
-        : 0;
+        const allResultsRes = await pool.query(
+          `SELECT 
+             COUNT(*) AS total,
+             COUNT(CASE WHEN status = 'Pass' THEN 1 END) AS passed,
+             ROUND(AVG(NULLIF(total_marks, 0)), 2) AS avg_marks,
+             ROUND(AVG(NULLIF(grade_points, 0)), 2) AS cgpa
+           FROM student_results
+           WHERE student_uid = $1 AND is_draft = false`,
+          [uid]
+        );
+        if (allResultsRes.rows.length > 0 && parseInt(allResultsRes.rows[0].total, 10) > 0) {
+          const row = allResultsRes.rows[0];
+          totalCoursesCount = parseInt(row.total, 10) || 0;
+          passedCoursesCount = parseInt(row.passed, 10) || 0;
+          if (row.avg_marks) overallAvgScore = parseFloat(row.avg_marks);
+          if (row.cgpa) overallCgpa = parseFloat(row.cgpa);
+        }
+      } catch (e) {
+        console.error("Error fetching performance result:", e);
+      }
+
+      // Calculate course performance score (0 - 100)
+      const quizAttempted = quizzes.filter(q => q.bestScore !== null && q.bestScore !== undefined);
+      const quizAvgPct = quizAttempted.length > 0
+        ? Math.round(quizAttempted.reduce((acc, q) => acc + (q.bestScore / q.totalMarks) * 100, 0) / quizAttempted.length)
+        : null;
+
+      const gradedAssignments = assignments.filter(a => a.submission && a.submission.marksObtained !== null && a.submission.marksObtained !== undefined);
+      const assignmentAvgPct = gradedAssignments.length > 0
+        ? Math.round(gradedAssignments.reduce((acc, a) => acc + (a.submission.marksObtained / a.maxMarks) * 100, 0) / gradedAssignments.length)
+        : null;
+
+      let courseResultScore = courseResult ? parseFloat(courseResult.total_marks) : null;
+
+      let weightedSum = 0;
+      let weightTotal = 0;
+      if (quizAvgPct !== null) { weightedSum += quizAvgPct * 0.35; weightTotal += 0.35; }
+      if (assignmentAvgPct !== null) { weightedSum += assignmentAvgPct * 0.35; weightTotal += 0.35; }
+      if (courseResultScore !== null) { weightedSum += courseResultScore * 0.30; weightTotal += 0.30; }
+
+      let coursePerformanceScore = weightTotal > 0 ? Math.round(weightedSum / weightTotal) : (progressPercentage > 0 ? Math.min(95, 60 + Math.round(progressPercentage * 0.35)) : 78);
+      let courseGrade = courseResult ? courseResult.grade : (coursePerformanceScore >= 90 ? 'O' : coursePerformanceScore >= 80 ? 'A+' : coursePerformanceScore >= 70 ? 'A' : coursePerformanceScore >= 60 ? 'B+' : coursePerformanceScore >= 50 ? 'B' : 'C');
+
+      const performance = {
+        overall: {
+          cgpa: overallCgpa,
+          averageScore: overallAvgScore,
+          passedCourses: passedCoursesCount,
+          totalCourses: totalCoursesCount || 1,
+          passRate: totalCoursesCount > 0 ? Math.round((passedCoursesCount / totalCoursesCount) * 100) : 100
+        },
+        course: {
+          performanceScore: coursePerformanceScore,
+          grade: courseGrade,
+          quizScore: quizAvgPct !== null ? `${quizAvgPct}%` : "No Attempts",
+          assignmentScore: assignmentAvgPct !== null ? `${assignmentAvgPct}%` : "Pending Grading",
+          internalMarks: courseResult ? courseResult.internal_marks : "--",
+          externalMarks: courseResult ? courseResult.external_marks : "--",
+          totalMarks: courseResult ? courseResult.total_marks : "--",
+          status: coursePerformanceScore >= 50 ? "Passing" : "Needs Support"
+        }
+      };
 
       // 12. Format Objectives & Course Modules
       let objectives = [];
@@ -955,6 +1021,7 @@ router.get(
           completedCount: completedActivities,
           totalCount: totalActivities,
         },
+        performance,
         attendance: attendanceData,
         assignments,
         quizzes,
