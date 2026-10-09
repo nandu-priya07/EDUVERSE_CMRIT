@@ -868,6 +868,11 @@ router.get(
         attendanceData = null;
       }
 
+      // 10.5 Calculate Student Activity Progress
+      const completedActivities = assignments.filter(a => a.submission).length + quizzes.filter(q => q.bestScore !== null && q.bestScore !== undefined).length;
+      const totalActivities = assignments.length + quizzes.length;
+      const progressPercentage = totalActivities > 0 ? Math.round((completedActivities / totalActivities) * 100) : 0;
+
       // 11. Fetch student results & calculate overall + course performance metrics
       let courseResult = null;
       let overallCgpa = 8.5;
